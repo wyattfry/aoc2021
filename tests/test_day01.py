@@ -1,11 +1,11 @@
 from unittest import TestCase
-import day01
+from aoc2021.day01 import Day01
 
 
 class TestDay01(TestCase):
     def test_part2(self):
         test_input = ['1', '2', '3', '4']
-        sut = day01.Day01(test_input)
+        sut = Day01(test_input)
         res = sut.part2()
         self.assertIs(res, 1)
 
@@ -22,6 +22,6 @@ class TestDay01(TestCase):
             '260',
             '263'
         ]
-        sut = day01.Day01(test_input)
+        sut = Day01(test_input)
         res = sut.part2()
         self.assertIs(res, 5)

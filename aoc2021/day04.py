@@ -7,7 +7,7 @@ class Day04(Solution):
     def __init__(self, puzzle_input):
         self.input = puzzle_input
 
-    def part1(self) :
+    def part1(self):
         return 0
 
     def part2(self):

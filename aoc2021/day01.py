@@ -2,8 +2,10 @@ from aoc2021.solution import Solution
 
 
 class Day01(Solution):
-    def __init__(self, input):
-        self.input = [int(i) for i in input]
+    day: int = 1
+
+    def __init__(self, puzzle_input):
+        self.input = [int(i) for i in puzzle_input]
 
     def part1(self) -> int:
         """

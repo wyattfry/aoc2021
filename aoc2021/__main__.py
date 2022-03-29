@@ -1,6 +1,12 @@
 import argparse  # pragma: no cover
+import os
+import sys
 
-from . import BaseClass, base_function  # pragma: no cover
+from aoc2021.base import get_input
+from aoc2021.day01 import Day01
+from aoc2021.day02 import Day02
+from aoc2021.day03 import Day03
+from aoc2021.solution import Solution
 
 
 def main() -> None:  # pragma: no cover
@@ -51,10 +57,27 @@ def main() -> None:  # pragma: no cover
         print("Verbose mode is on.")
 
     print("Executing main function")
-    base = BaseClass()
-    print(base.base_method())
-    print(base_function())
-    print("End of main function")
+    day = int(os.environ.get('DAY'))
+    solution: Solution()
+    puzzle_input = get_input(day)
+
+    if day == 1:
+        solution = Day01(puzzle_input)
+    elif day == 2:
+        solution = Day02(puzzle_input)
+    elif day == 3:
+        solution = Day03(puzzle_input)
+    else:
+        print('DAY env var not set')
+        sys.exit(1)
+
+    part1_answer = solution.part1()
+    part2_answer = solution.part2()
+    print(f'day {day}\npart 1 answer: {part1_answer}\npart 2 answer: {part2_answer}')
+    # base = BaseClass()
+    # print(base.base_method())
+    # print(base_function())
+    # print("End of main function")
 
 
 if __name__ == "__main__":  # pragma: no cover

@@ -1,27 +1,60 @@
 from unittest import TestCase
+from os import path, getcwd
 from aoc2021.day03 import Day03
 
 
 class TestDay03(TestCase):
-    def test_part1(self):
-        test_input = [
-            '1',
-            '2',
-            '3',
-            '4'
-        ]
-        sut = Day03(test_input)
-        res = sut.part1()
-        self.assertEquals(res, 1)
 
-    def test_part1(self):
-        test_input = [
-            '1',
-            '2',
-            '3',
-            '4'
+    def setUp(self) -> None:
+        input_file = path.join(path.dirname(__file__), "input_files", "input03.txt")
+        self.input = [x.strip() for x in open(input_file).readlines()]
+
+    def test_parse_00100_b2_to_4_b10(self):
+        sut = Day03(self.input)
+        res = sut.input
+        self.assertEquals(res[0], 4)
+
+    def test_get_whether_one_place(self):
+        cases = [
+            (Day03.get_whether_one_place(12, 0), False),
+            (Day03.get_whether_one_place(12, 1), False),
+            (Day03.get_whether_one_place(12, 2), True),
+            (Day03.get_whether_one_place(12, 3), True),
+            (Day03.get_whether_one_place(12, 4), False),
         ]
-        sut = Day03(test_input)
-        res = sut.part1()
-        self.assertEquals(res, 1)
+        i = 0
+        for case in cases:
+            with self.subTest(i=i):
+                self.assertEquals(case[0], case[1])
+                i += 1
+
+    def test_get_whether_more_ones(self):
+        self.assertTrue(Day03.get_whether_more_ones([1]))
+        self.assertTrue(Day03.get_whether_more_ones([1,0,1]))
+
+        self.assertFalse(Day03.get_whether_more_ones([0]))
+        self.assertFalse(Day03.get_whether_more_ones([1,0,1,0]))
+
+    def test_get_gamma_rate(self):
+        sut = Day03(self.input)
+        gamma_rate = sut.get_gamma_rate()
+        expect = 22
+        self.assertEquals(gamma_rate, expect)
+
+    def test_get_o2_generator_rating(self):
+        sut = Day03(self.input)
+        """the oxygen generator rating is 10111, or 23 in decimal."""
+        self.assertEquals(sut.get_o2_generator_rating(), 23)
+
+    def test_get_co2_scrubber_rating(self):
+        sut = Day03(self.input)
+        """the oxygen generator rating is 10111, or 23 in decimal."""
+        self.assertEquals(sut.get_co2_scrubber_rating(), 10)
+
+    def test_part2(self):
+        sut = Day03(self.input)
+        """the oxygen generator rating is 10111, or 23 in decimal."""
+        self.assertEquals(sut.part2(), 230)
+
+
 

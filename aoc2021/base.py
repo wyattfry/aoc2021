@@ -12,6 +12,7 @@ If you want to replace this with a Flask application run:
 
 and then choose `flask` as template.
 """
+from os import path
 
 
 class BaseClass:
@@ -30,3 +31,7 @@ def base_function() -> str:
     Base function.
     """
     return "hello from base function"
+
+
+def get_input(day: int):
+    return [i.strip() for i in open(path.join("aoc2021", "input_files", f"input{day:02}.txt")).readlines()]

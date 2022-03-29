@@ -2,34 +2,42 @@ from aoc2021.solution import Solution
 
 
 class Day02(Solution):
-    def __init__(self, input):
-        self.input = [int(i) for i in input]
+    day: int = 2
+    """--- Day 2: Dive! ---"""
+
+    def __init__(self, puzzle_input):
+        self.input = puzzle_input
 
     def part1(self) -> int:
         """
         How many measurements are larger than the previous measurement?
         """
-        previous = None
-        count = 0
+        horizontal_position = 0
+        vertical_position = 0
         for i in self.input:
-            if previous and previous < i:
-                count += 1
-            previous = i
-        print(f"Part 1: increase count: {count}")
-        return count
+            [direction, amount] = i.split(' ')
+            amount = int(amount)
+            horizontal_position += amount if direction == "forward" else 0
+            vertical_position += amount if direction == "down" else 0
+            vertical_position -= amount if direction == "up" else 0
+        return horizontal_position * vertical_position
 
     def part2(self) -> int:
         """
-        Consider sums of a three-measurement sliding window. How many sums are larger than the previous sum?
+        down X increases your aim by X units.
+        up X decreases your aim by X units.
+        forward X does two things:
+        It increases your horizontal position by X units.
+        It increases your depth by your aim multiplied by X.
         """
-        count = 0
-        i = 0
-        while i < len(self.input):
-            try:
-                current_window = sum([self.input[i - 0], self.input[i - 1], self.input[i - 2]])
-                next_window = sum([self.input[i + 1], self.input[i - 0], self.input[i - 1]])
-                count += 1 if next_window > current_window else 0
-            except IndexError:
-                print('swallowing index error')
-            i += 1
-        return count
+        aim = 0
+        horizontal_position = 0
+        vertical_position = 0
+        for i in self.input:
+            [direction, amount] = i.split(' ')
+            amount = int(amount)
+            horizontal_position += amount if direction == "forward" else 0
+            vertical_position += amount * aim if direction == "forward" else 0
+            aim += amount if direction == "down" else 0
+            aim -= amount if direction == "up" else 0
+        return horizontal_position * vertical_position
