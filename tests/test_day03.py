@@ -1,18 +1,16 @@
-from unittest import TestCase
-from os import path, getcwd
 from aoc2021.day03 import Day03
+from tests.file_reading_test_base import FileReadingTestBase
 
 
-class TestDay03(TestCase):
+class TestDay03(FileReadingTestBase):
 
-    def setUp(self) -> None:
-        input_file = path.join(path.dirname(__file__), "input_files", "input03.txt")
-        self.input = [x.strip() for x in open(input_file).readlines()]
+    def get_day(self) -> str:
+        return "03"
 
     def test_parse_00100_b2_to_4_b10(self):
         sut = Day03(self.input)
         res = sut.input
-        self.assertEquals(res[0], 4)
+        self.assertEqual(res[0], 4)
 
     def test_get_whether_one_place(self):
         cases = [
@@ -25,7 +23,7 @@ class TestDay03(TestCase):
         i = 0
         for case in cases:
             with self.subTest(i=i):
-                self.assertEquals(case[0], case[1])
+                self.assertEqual(case[0], case[1])
                 i += 1
 
     def test_get_whether_more_ones(self):
@@ -39,22 +37,22 @@ class TestDay03(TestCase):
         sut = Day03(self.input)
         gamma_rate = sut.get_gamma_rate()
         expect = 22
-        self.assertEquals(gamma_rate, expect)
+        self.assertEqual(gamma_rate, expect)
 
     def test_get_o2_generator_rating(self):
         sut = Day03(self.input)
         """the oxygen generator rating is 10111, or 23 in decimal."""
-        self.assertEquals(sut.get_o2_generator_rating(), 23)
+        self.assertEqual(sut.get_o2_generator_rating(), 23)
 
     def test_get_co2_scrubber_rating(self):
         sut = Day03(self.input)
         """the oxygen generator rating is 10111, or 23 in decimal."""
-        self.assertEquals(sut.get_co2_scrubber_rating(), 10)
+        self.assertEqual(sut.get_co2_scrubber_rating(), 10)
 
     def test_part2(self):
         sut = Day03(self.input)
         """the oxygen generator rating is 10111, or 23 in decimal."""
-        self.assertEquals(sut.part2(), 230)
+        self.assertEqual(sut.part2(), 230)
 
 
 

@@ -1,9 +1,9 @@
 from typing import List
 
-from aoc2021.solution import Solution
+from aoc2021.solutionbase import SolutionBase
 
 
-class Day03(Solution):
+class Day03(SolutionBase):
     """
     --- Day 3: Binary Diagnostic ---
     https://adventofcode.com/2021/day/3
@@ -65,7 +65,8 @@ class Day03(Solution):
         return gamma_rate * epsilon_rate
 
     def get_o2_generator_rating(self):
-        return self._get_rating(1)
+        self.o2_generator_rating = self._get_rating(1)
+        return self.o2_generator_rating
 
     def get_co2_scrubber_rating(self):
         self.co2_scrubber_rating = self._get_rating(0)

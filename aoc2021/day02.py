@@ -1,7 +1,7 @@
-from aoc2021.solution import Solution
+from aoc2021.solutionbase import SolutionBase
 
 
-class Day02(Solution):
+class Day02(SolutionBase):
     day: int = 2
     """--- Day 2: Dive! ---"""
 

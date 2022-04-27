@@ -1,4 +1,7 @@
-class Solution:
+class SolutionBase:
+    def setup(self):
+        raise NotImplementedError()
+
     def part1(self):
         raise NotImplementedError()
 

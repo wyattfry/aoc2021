@@ -1,7 +1,7 @@
-from aoc2021.solution import Solution
+from aoc2021.solutionbase import SolutionBase
 
 
-class Day01(Solution):
+class Day01(SolutionBase):
     day: int = 1
 
     def __init__(self, puzzle_input):
