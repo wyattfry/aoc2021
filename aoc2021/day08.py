@@ -1,4 +1,3 @@
-import sys
 from typing import List, Dict
 from aoc2021.solutionbase import SolutionBase
 
@@ -128,7 +127,6 @@ class Day08(SolutionBase):
             return Day08.segment_to_digit_dict[descrambled]
         except KeyError:
             print(f"'{scrambled}' decoded to invalid pattern: '{descrambled}'")
-            # sys.exit(-1)
             return -1
 
     @staticmethod
@@ -156,6 +154,7 @@ class Day08(SolutionBase):
         return self.count_unique_lengths_in_all_digit_outputs()
 
     def part2(self):
+        """ descramble each line, then add up all the output values """
         sum_of_output_values = 0
         for entry in self.puzzle_input:
             sum_of_output_values += Day08.get_output_value_from_entry(entry)
